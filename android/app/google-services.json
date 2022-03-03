@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "639232013174",
+    "project_id": "poop-451fd",
+    "storage_bucket": "poop-451fd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:639232013174:android:2f62b1c721f8c26eaf8057",
+        "android_client_info": {
+          "package_name": "com.example.pop_store"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "639232013174-8g65rfvqg4lschuf9j82941rctleqkj8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGhLv54QiJ2O5t1Z5fsioTh_Sw7QUX96M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "639232013174-8g65rfvqg4lschuf9j82941rctleqkj8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
