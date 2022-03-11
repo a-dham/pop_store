@@ -1,54 +1,78 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:pop_store/src/logic/bindings/home_bindings.dart';
+import 'package:pop_store/src/logic/controller/home_controller.dart';
 import 'package:pop_store/src/utils/constant.dart';
 import 'package:pop_store/src/utils/custom_text_field.dart';
 
 class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
-
+  Home({Key? key}) : super(key: key);
+  // GetxController getxController = Get.find<HomeController>();
+  HomeController controller = Get.put(HomeController());
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-          child: Column(
-        children: [
-          Container(
-            height: 200.h,
-            padding: EdgeInsets.all(16.h),
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(50),
-                bottomRight: Radius.circular(50),
-              ),
-              color: kmaincolor,
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'POP SHOP',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 22.sp,
+    return SafeArea(child: Obx(
+      () {
+        return Scaffold(
+            bottomNavigationBar: BottomNavigationBar(
+              elevation: 3,
+              currentIndex: controller.index.value,
+              onTap: (index) {
+                controller.index.value = index;
+              },
+              items: const [
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.home,
+                    color: Colors.black,
+                  ),
+                  label: '',
+                  activeIcon: Icon(
+                    Icons.home,
+                    color: kmaincolor,
                   ),
                 ),
-                Row(
-                  children: [
-                    // Expanded(
-                    // child: CustomTextField(
-                    //   lable: "Search you're looking for",
-                    //   icon: Icon(Icons.search),
-                    //   oncomplete: () {},
-                    // ),
-                    // ),
-                    IconButton(onPressed: () {}, icon: Icon(Icons.menu))
-                  ],
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.notifications,
+                    color: Colors.black,
+                  ),
+                  label: '',
+                  activeIcon: Icon(
+                    Icons.notifications,
+                    color: kmaincolor,
+                  ),
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.favorite,
+                    color: Colors.black,
+                  ),
+                  label: '',
+                  activeIcon: Icon(
+                    Icons.favorite,
+                    color: kmaincolor,
+                  ),
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.person,
+                    color: Colors.black,
+                  ),
+                  label: '',
+                  activeIcon: Icon(
+                    Icons.person,
+                    color: kmaincolor,
+                  ),
                 ),
               ],
             ),
-          )
-        ],
-      )),
-    );
+            body: IndexedStack(
+              index: controller.index.value,
+              children: [...controller.pages],
+            ));
+      },
+    ));
   }
 }

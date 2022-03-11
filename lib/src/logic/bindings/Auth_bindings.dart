@@ -1,6 +1,3 @@
-import 'dart:ffi';
-
-import 'package:flutter/gestures.dart';
 import 'package:get/get.dart';
 import 'package:pop_store/src/logic/controller/auth_controller.dart';
 

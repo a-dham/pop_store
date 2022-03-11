@@ -223,28 +223,40 @@ class LoginScreen extends StatelessWidget {
                       SizedBox(
                         height: 25.h,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          InkWell(
-                            child: Image.asset(
-                              'assets/images/facebook.png',
-                              height: 50.h,
-                              width: 30.w,
+                      GetBuilder<AuthController>(
+                        builder: (getxController) => Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                getxController.signInWithFacebook();
+                              },
+                              child: Image.asset(
+                                'assets/images/facebook.png',
+                                height: 50.h,
+                                width: 30.w,
+                              ),
                             ),
-                          ),
-                          SizedBox(
-                            width: 20.w,
-                          ),
-                          InkWell(
-                            child: Image.asset(
-                              'assets/images/google.png',
-                              height: 50.h,
-                              width: 30.w,
+                            SizedBox(
+                              width: 20.w,
                             ),
-                          ),
-                        ],
-                      ),
+                            InkWell(
+                              onTap: () {
+                                try {
+                                  getxController.googlesignin();
+                                } catch (e) {
+                                  print(e);
+                                }
+                              },
+                              child: Image.asset(
+                                'assets/images/google.png',
+                                height: 50.h,
+                                width: 30.w,
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
                     ],
                   ),
                 ),

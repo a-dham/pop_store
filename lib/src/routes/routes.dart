@@ -1,10 +1,15 @@
 import 'package:get/get.dart';
 import 'package:pop_store/src/logic/bindings/Auth_bindings.dart';
+import 'package:pop_store/src/logic/bindings/home_bindings.dart';
 import 'package:pop_store/src/logic/controller/auth_controller.dart';
 import 'package:pop_store/src/view/screens/Auth/Login/login.dart';
 import 'package:pop_store/src/view/screens/Auth/forget%20password/forget_password.dart';
 import 'package:pop_store/src/view/screens/Auth/sign_up/sign_up.dart';
+import 'package:pop_store/src/view/screens/favorite/favorites.dart';
+import 'package:pop_store/src/view/screens/home/home.dart';
 import 'package:pop_store/src/view/screens/home/home_screen.dart';
+import 'package:pop_store/src/view/screens/notifacations/notifacations.dart';
+import 'package:pop_store/src/view/screens/profile/profile.dart';
 import 'package:pop_store/src/view/screens/splash_screen.dart';
 
 class AppRoutes {
@@ -27,12 +32,21 @@ class AppRoutes {
     GetPage(
       name: Routes.home,
       page: () => Home(),
-      binding: AuthBinding(),
+      binding: HomeBindings(),
+      bindings: [
+        HomeBindings(),
+        AuthBinding(),
+      ],
     ),
     GetPage(
       name: Routes.forgetpassword,
       page: () => ForgetPassword(),
+      binding: AuthBinding(),
     ),
+    GetPage(name: Routes.profile, page: () => Profile()),
+    GetPage(name: Routes.Notifacation, page: () => Notifacations()),
+    GetPage(name: Routes.favourite, page: () => Favorites()),
+    GetPage(name: Routes.homepage, page: () => HomePage()),
   ];
 }
 
@@ -42,4 +56,8 @@ class Routes {
   static const signup = '/signupscreen';
   static const home = '/homescreen';
   static const forgetpassword = '/forgetpassword';
+  static const profile = '/profile';
+  static const Notifacation = '/notifications';
+  static const favourite = '/favourite';
+  static const homepage = '/homepage';
 }

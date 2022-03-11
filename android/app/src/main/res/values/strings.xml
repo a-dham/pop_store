@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string name="app_name">pop shop</string>
+
+<string name="facebook_app_id">3149749131947395</string>
+<string name="fb_login_protocol_scheme">fb1234</string>
+<string name="facebook_client_token">2d7ed4cdc06b13c15c4b21b6996a2510</string>
+
+
+</resources>

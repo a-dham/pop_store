@@ -75,14 +75,10 @@ class ForgetPassword extends StatelessWidget {
                     child: GetBuilder<AuthController>(
                   builder: (controller) => CustomElevatedButton(
                       onpressed: () {
-                        try {
-                          String email = emailcontroller.text.trim();
-                          controller.restpassword(
-                            email: email,
-                          );
-                        } catch (e) {
-                          print(e.toString());
-                        }
+                        String email = emailcontroller.text.trim();
+                        controller.restpassword(
+                          email: email,
+                        );
                       },
                       text: 'Send',
                       color: kmaincolor,
