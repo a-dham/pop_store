@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
 import 'package:pop_store/src/utils/constant.dart';
 
@@ -47,8 +48,9 @@ class CustomTextField extends StatelessWidget {
             ),
             Text(
               lable,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 15,
+                color: Get.isDarkMode ? Colors.pink : Colors.black,
               ),
             )
           ],
@@ -57,12 +59,14 @@ class CustomTextField extends StatelessWidget {
         fillColor: const Color(0xffF5F5F5),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(
-            color: kmaincolor,
+          borderSide: BorderSide(
+            color: Get.isDarkMode ? Colors.pink : kmaincolor,
           ),
         ),
         enabledBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Color(0xffF5F5F5)),
+          borderSide: const BorderSide(
+            color: Color(0xffF5F5F5),
+          ),
           borderRadius: BorderRadius.circular(10),
         ),
         errorBorder: OutlineInputBorder(
@@ -72,8 +76,8 @@ class CustomTextField extends StatelessWidget {
         errorMaxLines: 2,
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(
-            color: kmaincolor,
+          borderSide: BorderSide(
+            color: Get.isDarkMode ? Colors.pink : kmaincolor,
           ),
         ),
       ),

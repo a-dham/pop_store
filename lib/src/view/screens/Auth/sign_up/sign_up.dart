@@ -22,7 +22,7 @@ class SignUp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: context.theme.backgroundColor,
         body: Form(
           // autovalidateMode: ,
           key: signupformkey,

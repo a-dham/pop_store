@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:pop_store/src/model/facebook_model.dart';
 import 'package:pop_store/src/routes/routes.dart';
 import 'package:pop_store/src/utils/constant.dart';
@@ -15,6 +16,8 @@ class AuthController extends GetxController {
   FirebaseAuth auth = FirebaseAuth.instance;
   String username = '';
   FacebookModel? facebookModel;
+  bool isSignIn = false;
+  final GetStorage authBox = GetStorage();
 
   void visibilityfun() {
     visibilaty = !visibilaty;
@@ -91,9 +94,13 @@ class AuthController extends GetxController {
         email: email,
         password: password,
       )
-          .then((value) {
-        username = auth.currentUser!.displayName!;
-      });
+          .then(
+        (value) {
+          username = auth.currentUser!.displayName!;
+        },
+      );
+      isSignIn = true;
+      authBox.write('Auth', isSignIn);
       update();
       Get.offNamed(Routes.home);
     } on FirebaseAuthException catch (e) {
@@ -152,6 +159,9 @@ class AuthController extends GetxController {
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
     // GoogleSignIn().currentUser?.displayName;
     // GoogleSignIn().currentUser?.photoUrl;
+    isSignIn = true;
+    authBox.write('Auth', isSignIn);
+
     update();
     Get.offNamed(Routes.home);
 
@@ -176,11 +186,13 @@ class AuthController extends GetxController {
     facebookModel = FacebookModel.fromjson(data);
     print("=====================");
     print(facebookModel?.email);
-    ;
+
     print(facebookModel?.name);
     print(facebookModel?.id);
 
     print("=====================");
+    isSignIn = true;
+    authBox.write('Auth', isSignIn);
 
     update();
     Get.offNamed(Routes.home);
@@ -190,5 +202,20 @@ class AuthController extends GetxController {
 
     // // Once signed in, return the UserCredential
     // return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
+  }
+
+  void singOut() {
+    try {
+      auth.signOut();
+      FacebookAuth.instance.logOut();
+      GoogleSignIn().signOut();
+      authBox.write('Auth', isSignIn);
+      isSignIn = false;
+
+      update();
+      Get.offNamed(Routes.splashscreen);
+    } catch (e) {
+      print(e);
+    }
   }
 }
