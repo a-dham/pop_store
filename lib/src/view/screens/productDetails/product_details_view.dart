@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:pop_store/src/model/get_all_products_model.dart';
 import 'package:pop_store/src/view/screens/productDetails/product_details_body.dart';

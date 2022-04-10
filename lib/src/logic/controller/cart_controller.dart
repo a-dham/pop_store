@@ -14,17 +14,16 @@ class CartController extends GetxController {
   // bool isAddProduct() {
 
   // }
+  // get products => productsMap;
+  get totalOfCart => productsMap.entries
+      .map((product) => product.key.price * product.value)
+      .toList()
+      .reduce((value, element) => value + element)
+      .toStringAsFixed(2);
 
-  get totalOfCart {
-    productsMap.entries
-        .map((e) => e.key.price * e.value)
-        .toList()
-        .reduce((value, element) => value = element);
-  }
-
-  get subTotal {
-    productsMap.entries.map((e) => e.key.price * e.value).toList();
-  }
+  // get subTotal => productsMap.entries
+  //     .map((product) => product.key.price * product.value)
+  //     .toList();
 
   void reduceCountOfProduct(AllProductsModel allProductsModel) {
     if (productsMap.containsKey(allProductsModel) &&

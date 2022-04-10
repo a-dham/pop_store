@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -9,14 +11,14 @@ import 'package:pop_store/src/utils/custom_text_field.dart';
 
 class ForgetPassword extends StatelessWidget {
   ForgetPassword({Key? key}) : super(key: key);
-  TextEditingController emailcontroller = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   GetxController controller = Get.find<AuthController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.theme.backgroundColor,
       appBar: AppBar(
-        title: Text('Forget Password'),
+        title: const Text('Forget Password'),
         centerTitle: true,
         elevation: 0,
         backgroundColor: kmaincolor,
@@ -29,16 +31,16 @@ class ForgetPassword extends StatelessWidget {
               alignment: Alignment.centerRight,
               child: IconButton(
                 onPressed: () {
-                  Get.offNamed(Routes.loginscreen);
+                  Get.offNamed(Routes.loginScreen);
                 },
-                icon: Icon(
+                icon: const Icon(
                   Icons.close,
                   color: Colors.red,
                 ),
               ),
             ),
-            Text(
-              'If YOU WANT TO RECOVER YOUR ACOUNT, THEN PLEAS PROVIDE YOUR EMAIL ID BELOW',
+            const Text(
+              'If YOU WANT TO RECOVER YOUR ACCOUNT, THEN PLEAS PROVIDE YOUR EMAIL ID BELOW',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 14,
@@ -56,18 +58,21 @@ class ForgetPassword extends StatelessWidget {
               ),
             ),
             CustomTextField(
-              lable: "Email",
-              icon: Icon(
+              label: "Email",
+              icon: const Icon(
                 Icons.email,
                 color: kmaincolor,
               ),
               oncomplete: () {},
-              suffixicon: Text(''),
-              controller: emailcontroller,
-              validator: (newvalue) {},
+              suffixion: const Text(''),
+              controller: emailController,
+              validator: (newValue) {
+                return null;
+              },
               obscure: false,
+              onChanged: (string) {},
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Row(
@@ -75,17 +80,17 @@ class ForgetPassword extends StatelessWidget {
                 Expanded(
                     child: GetBuilder<AuthController>(
                   builder: (controller) => CustomElevatedButton(
-                      onpressed: () {
-                        String email = emailcontroller.text.trim();
+                      onPressed: () {
+                        String email = emailController.text.trim();
                         controller.restpassword(
                           email: email,
                         );
                       },
                       text: 'Send',
                       color: kmaincolor,
-                      horizental: 11,
+                      horizontal: 11,
                       vertical: 20,
-                      fontsize: 20.sp),
+                      fontSize: 20.sp),
                 )),
               ],
             )

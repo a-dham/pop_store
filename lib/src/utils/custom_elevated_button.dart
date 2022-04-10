@@ -4,28 +4,28 @@ import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
 class CustomElevatedButton extends StatelessWidget {
   const CustomElevatedButton({
     Key? key,
-    required this.onpressed,
+    required this.onPressed,
     required this.text,
     required this.color,
-    required this.horizental,
+    required this.horizontal,
     required this.vertical,
-    required this.fontsize,
+    required this.fontSize,
   }) : super(key: key);
-  final Callback onpressed;
+  final Callback onPressed;
   final String text;
   final Color color;
-  final double horizental;
+  final double horizontal;
   final double vertical;
-  final double fontsize;
+  final double fontSize;
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: onpressed,
+      onPressed: onPressed,
       child: Text(
         text,
         style: TextStyle(
-          fontSize: fontsize,
+          fontSize: fontSize,
         ),
       ),
       style: ButtonStyle(
@@ -36,7 +36,7 @@ class CustomElevatedButton extends StatelessWidget {
           ),
         ),
         padding: MaterialStateProperty.all(EdgeInsets.symmetric(
-          horizontal: horizental,
+          horizontal: horizontal,
           vertical: vertical,
         )),
         backgroundColor: MaterialStateProperty.all(

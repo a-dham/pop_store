@@ -1,4 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pop_store/src/logic/controller/auth_controller.dart';
@@ -24,7 +25,6 @@ class SignUp extends StatelessWidget {
     return Scaffold(
         backgroundColor: context.theme.backgroundColor,
         body: Form(
-          // autovalidateMode: ,
           key: signupformkey,
           child: SingleChildScrollView(
             child: Column(
@@ -50,7 +50,7 @@ class SignUp extends StatelessWidget {
                             "UP",
                             style: TextStyle(
                               fontSize: 35.sp,
-                              color: Color(0xff707070),
+                              color: const Color(0xff707070),
                             ),
                           ),
                         ],
@@ -62,21 +62,24 @@ class SignUp extends StatelessWidget {
                         validator: (value) {
                           try {
                             if (!RegExp(validationName).hasMatch(value!)) {
-                              return "Your username musn't have $Value";
+                              return "Your username mustn't have $Value";
                             }
                           } catch (e) {
-                            return 'your username hase error in $e';
+                            return 'your username has error in $e';
                           }
+                          return null;
                         },
                         obscure: false,
                         controller: usernamecontroller,
                         oncomplete: () {},
-                        lable: 'User Name',
+                        label: 'User Name',
                         icon: Icon(
                           Icons.person,
                           color: kmaincolor,
                           size: 38.sp,
                         ),
+                        onChanged: (string) {},
+                        suffixion: null,
                       ),
                       SizedBox(
                         height: 20.h,
@@ -85,21 +88,24 @@ class SignUp extends StatelessWidget {
                         validator: (value) {
                           try {
                             if (!RegExp(validationEmail).hasMatch(value!)) {
-                              return "Your Email musn't have $Value";
+                              return "Your Email mustn't have $Value";
                             }
                           } catch (e) {
                             return 'it should be $e';
                           }
+                          return null;
                         },
                         obscure: false,
                         controller: emailcontroller,
                         oncomplete: () {},
-                        lable: 'Email',
+                        label: 'Email',
                         icon: Icon(
                           Icons.email,
                           color: kmaincolor,
                           size: 30.sp,
                         ),
+                        onChanged: (string) {},
+                        suffixion: null,
                       ),
                       SizedBox(
                         height: 20.h,
@@ -114,30 +120,32 @@ class SignUp extends StatelessWidget {
                             } catch (e) {
                               return 'it should be this $e';
                             }
+                            return null;
                           },
-                          obscure: controller.visibilaty ? true : false,
-                          suffixicon: IconButton(
+                          obscure: controller.visibility ? true : false,
+                          suffixion: IconButton(
                             onPressed: () {
                               controller.visibilityfun();
                             },
-                            icon: controller.visibilaty
-                                ? Icon(
+                            icon: controller.visibility
+                                ? const Icon(
                                     Icons.visibility,
                                     color: Colors.black,
                                   )
-                                : Icon(
+                                : const Icon(
                                     Icons.visibility_off,
                                     color: Colors.black,
                                   ),
                           ),
                           controller: passwordcontroller,
                           oncomplete: () {},
-                          lable: 'Password',
+                          label: 'Password',
                           icon: Icon(
                             Icons.lock,
                             color: kmaincolor,
                             size: 30.sp,
                           ),
+                          onChanged: (string) {},
                         ),
                       ),
                       SizedBox(
@@ -159,8 +167,8 @@ class SignUp extends StatelessWidget {
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(5),
                                     side: const BorderSide()),
-                                value: controller.chekbox,
-                                onChanged: (newvalue) {
+                                value: controller.checkbox,
+                                onChanged: (newValue) {
                                   controller.checkacceptconditions();
                                 },
                                 activeColor: const Color(0xff707070),
@@ -170,7 +178,7 @@ class SignUp extends StatelessWidget {
                             Text('I accept ',
                                 style: TextStyle(
                                   fontSize: 15.sp,
-                                  color: Color(0xff707070),
+                                  color: const Color(0xff707070),
                                 )),
                             Text(
                               'terms & conditions',
@@ -178,7 +186,7 @@ class SignUp extends StatelessWidget {
                                 fontSize: 15.sp,
                                 decoration: TextDecoration.underline,
                                 decorationThickness: 2,
-                                color: Color(0xff707070),
+                                color: const Color(0xff707070),
                               ),
                             ),
                           ],
@@ -192,7 +200,7 @@ class SignUp extends StatelessWidget {
                                 children: [
                                   Expanded(
                                     child: CustomElevatedButton(
-                                      onpressed: () async {
+                                      onPressed: () async {
                                         try {
                                           if (signupformkey.currentState!
                                               .validate()) {
@@ -207,7 +215,7 @@ class SignUp extends StatelessWidget {
                                               password: password,
                                               email: email,
                                             );
-                                          } else if (controller.chekbox ==
+                                          } else if (controller.checkbox ==
                                               false) {
                                             Get.snackbar(
                                               'PLZ',
@@ -215,11 +223,11 @@ class SignUp extends StatelessWidget {
                                               snackPosition:
                                                   SnackPosition.BOTTOM,
                                               backgroundColor: kmaincolor,
-                                              animationDuration:
-                                                  Duration(milliseconds: 800),
+                                              animationDuration: const Duration(
+                                                  milliseconds: 800),
                                               colorText: Colors.white,
-                                              duration:
-                                                  Duration(milliseconds: 800),
+                                              duration: const Duration(
+                                                  milliseconds: 800),
                                             );
                                           }
                                         } catch (e) {
@@ -227,19 +235,19 @@ class SignUp extends StatelessWidget {
                                             "$e",
                                             "check this $e",
                                             backgroundColor: kmaincolor,
-                                            animationDuration:
-                                                Duration(milliseconds: 800),
+                                            animationDuration: const Duration(
+                                                milliseconds: 800),
                                             colorText: Colors.white,
-                                            duration:
-                                                Duration(milliseconds: 800),
+                                            duration: const Duration(
+                                                milliseconds: 800),
                                           );
                                         }
                                       },
                                       text: 'SIGN UP',
                                       color: kmaincolor,
-                                      horizental: 20.w,
+                                      horizontal: 20.w,
                                       vertical: 16.h,
-                                      fontsize: 16.sp,
+                                      fontSize: 16.sp,
                                     ),
                                   )
                                 ],
@@ -273,7 +281,7 @@ class SignUp extends StatelessWidget {
                       InkWell(
                         onTap: () {
                           Get.offNamed(
-                            Routes.loginscreen,
+                            Routes.loginScreen,
                           );
                         },
                         child: Text(

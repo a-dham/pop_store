@@ -10,9 +10,7 @@ class AllProductsServices {
     if (response.statusCode == 200) {
       return allProductsModelFromJson(response.body);
     } else {
-      print(response.statusCode);
-
-      return throw Exception('Faild to Load products ${response.statusCode}');
+      return throw Exception('Fail to Load products ${response.statusCode}');
     }
   }
 }

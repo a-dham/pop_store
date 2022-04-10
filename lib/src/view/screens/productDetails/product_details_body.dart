@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,7 +22,7 @@ class ProductDetailsBody extends StatefulWidget {
   final String description;
   final double price;
   final AllProductsModel allProductsModel;
-  ProductDetailsBody({
+  const ProductDetailsBody({
     required this.image,
     required this.title,
     required this.productId,
@@ -61,7 +63,7 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
                 children: [
                   CarouselSlider.builder(
                     carouselController: carouselController,
-                    itemCount: 3,
+                    itemCount: 5,
                     options: CarouselOptions(
                       height: double.infinity,
                       initialPage: 0,
@@ -92,12 +94,12 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
                     bottom: 30,
                     child: AnimatedSmoothIndicator(
                       activeIndex: currentIndex,
-                      count: 3,
-                      effect: const ExpandingDotsEffect(
+                      count: 5,
+                      effect: ExpandingDotsEffect(
                         dotHeight: 12,
                         dotWidth: 12,
                         activeDotColor: kmaincolor,
-                        dotColor: Colors.black,
+                        dotColor: Get.isDarkMode ? Colors.grey : Colors.black,
                       ),
                     ),
                   ),
@@ -201,7 +203,7 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
             const SizedBox(
               height: 30,
             ),
-            SizeOfProduct(),
+            const SizeOfProduct(),
             const SizedBox(
               height: 30,
             ),
@@ -279,7 +281,7 @@ class AddToCard extends StatelessWidget {
 }
 
 class SizeOfProduct extends StatefulWidget {
-  SizeOfProduct({
+  const SizeOfProduct({
     Key? key,
   }) : super(key: key);
 
@@ -426,7 +428,7 @@ class ProductInfo extends StatelessWidget {
             height: 10,
           ),
           ReadMoreText(
-            '$description',
+            description,
             trimLines: 3,
 
             // lessStyle: TextStyle(fontSize: 20),

@@ -1,10 +1,11 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
 import 'package:pop_store/src/logic/controller/all_products_controller.dart';
 import 'package:pop_store/src/logic/controller/cart_controller.dart';
 import 'package:pop_store/src/model/get_all_products_model.dart';
-import 'package:pop_store/src/routes/routes.dart';
 import 'package:pop_store/src/utils/constant.dart';
 
 class ProductCard extends StatelessWidget {
@@ -102,12 +103,18 @@ class ProductCard extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('\$ $price'),
+                              Text(
+                                '\$ $price',
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
                               Container(
-                                padding: EdgeInsets.all(6),
+                                padding: const EdgeInsets.all(6),
                                 child: Row(
                                   children: [
-                                    Icon(
+                                    const Icon(
                                       Icons.star,
                                       size: 10,
                                     ),

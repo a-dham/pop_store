@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,7 +18,7 @@ class CartView extends StatelessWidget {
       backgroundColor: context.theme.backgroundColor,
       appBar: AppBar(
         backgroundColor: Get.isDarkMode ? Colors.black : kmaincolor,
-        title: Text('Text Items'),
+        title: const Text('Text Items'),
         centerTitle: true,
         elevation: 0,
         leading: IconButton(
@@ -180,9 +182,12 @@ class CartView extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(15),
                               ),
                             )),
-                      )
+                      ),
                     ],
-                  )
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
                 ],
               ),
             );
@@ -255,7 +260,8 @@ class CartProductWidget extends StatelessWidget {
                   height: 10,
                 ),
                 Text(
-                  '\$ ${cartController.subTotal}',
+                  '\$ ${allProductsModel.price * quantity}',
+                  overflow: TextOverflow.clip,
                   style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,

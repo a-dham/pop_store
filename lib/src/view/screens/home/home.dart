@@ -1,9 +1,10 @@
+// ignore_for_file: avoid_types_as_parameter_names, non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pop_store/src/logic/controller/all_products_controller.dart';
 import 'package:pop_store/src/logic/controller/cart_controller.dart';
 import 'package:pop_store/src/routes/routes.dart';
-import 'package:pop_store/src/services/all_products_services.dart';
 import 'package:pop_store/src/utils/constant.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pop_store/src/utils/custom_text_field.dart';
@@ -11,21 +12,23 @@ import 'package:pop_store/src/view/widgets/home/categories_widget.dart';
 import 'package:badges/badges.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key? key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  TextEditingController controller = TextEditingController();
   CartController cartController = Get.find<CartController>();
+  AllProductsController allProductsController =
+      Get.find<AllProductsController>();
   String? dropdownValue;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         backgroundColor: context.theme.backgroundColor,
+        resizeToAvoidBottomInset: false,
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -95,7 +98,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                         Row(
-                          children: [],
+                          children: const [],
                         ),
                         SizedBox(
                           height: 6.0.h,
@@ -114,19 +117,37 @@ class _HomePageState extends State<HomePage> {
                   Row(
                     children: [
                       Expanded(
-                        child: CustomTextField(
-                          controller: controller,
+                          child: GetBuilder<AllProductsController>(
+                        builder: (AllProductsController) => CustomTextField(
+                          onChanged: (searchName) {
+                            allProductsController.search(searchName);
+                          },
+                          controller:
+                              allProductsController.textSearchController,
                           obscure: false,
-                          suffixicon: Text(''),
-                          validator: (string) {},
-                          lable: "Search you're looking for",
+                          suffixion: allProductsController
+                                  .textSearchController.text.isNotEmpty
+                              ? IconButton(
+                                  onPressed: () {
+                                    allProductsController.clearSearch();
+                                  },
+                                  icon: const Icon(
+                                    Icons.close,
+                                    color: Colors.black,
+                                  ),
+                                )
+                              : null,
+                          validator: (string) {
+                            return null;
+                          },
+                          label: "what's on your mind?",
                           icon: Icon(
                             Icons.search,
                             color: Get.isDarkMode ? Colors.pink : Colors.black,
                           ),
                           oncomplete: () {},
                         ),
-                      ),
+                      )),
                       IconButton(
                           onPressed: () {},
                           icon: Icon(

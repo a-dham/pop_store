@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,9 +12,9 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
 class AuthController extends GetxController {
-  bool visibilaty = true;
-  bool chekbox = false;
-  bool isremember = false;
+  bool visibility = true;
+  bool checkbox = false;
+  bool remember = false;
   FirebaseAuth auth = FirebaseAuth.instance;
   String username = '';
   FacebookModel? facebookModel;
@@ -20,17 +22,17 @@ class AuthController extends GetxController {
   final GetStorage authBox = GetStorage();
 
   void visibilityfun() {
-    visibilaty = !visibilaty;
+    visibility = !visibility;
     update();
   }
 
   void checkacceptconditions() {
-    chekbox = !chekbox;
+    checkbox = !checkbox;
     update();
   }
 
   void remeberme() {
-    isremember = !isremember;
+    remember = !remember;
     update();
   }
 
@@ -55,31 +57,31 @@ class AuthController extends GetxController {
       );
     } on FirebaseAuthException catch (e) {
       String title = e.code.replaceAll(RegExp('-'), ' ').capitalize!;
-      String meesege = '';
+      String message = '';
       if (e.code == 'weak-password') {
-        meesege = "The password provided is too weak";
+        message = "The password provided is too weak";
       } else if (e.code == '[firebase_auth/email-already-in-use]') {
-        meesege = 'The account already exists for that email';
+        message = 'The account already exists for that email';
       } else {
-        meesege = e.message.toString();
+        message = e.message.toString();
       }
       Get.snackbar(
         title,
-        meesege,
+        message,
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: kmaincolor,
-        animationDuration: Duration(milliseconds: 800),
+        animationDuration: const Duration(milliseconds: 800),
         colorText: Colors.white,
-        duration: Duration(milliseconds: 800),
+        duration: const Duration(milliseconds: 800),
       );
     } catch (e) {
       Get.snackbar(
         "$e",
         "There check this $e",
         backgroundColor: kmaincolor,
-        animationDuration: Duration(milliseconds: 800),
+        animationDuration: const Duration(milliseconds: 800),
         colorText: Colors.white,
-        duration: Duration(milliseconds: 800),
+        duration: const Duration(milliseconds: 800),
       );
     }
   }
@@ -118,38 +120,38 @@ class AuthController extends GetxController {
         message,
         snackPosition: SnackPosition.TOP,
         backgroundColor: Colors.red,
-        animationDuration: Duration(milliseconds: 800),
+        animationDuration: const Duration(milliseconds: 800),
         colorText: Colors.white,
-        duration: Duration(milliseconds: 800),
+        duration: const Duration(milliseconds: 800),
       );
     } catch (e) {
       Get.snackbar(
         "$e",
         "There check this $e",
         backgroundColor: kmaincolor,
-        animationDuration: Duration(milliseconds: 800),
+        animationDuration: const Duration(milliseconds: 800),
         colorText: Colors.white,
-        duration: Duration(milliseconds: 800),
+        duration: const Duration(milliseconds: 800),
       );
     }
   }
 
   Future restpassword({required email}) async {
     try {
-      Center(child: CircularProgressIndicator());
+      const Center(child: CircularProgressIndicator());
       await auth.sendPasswordResetEmail(email: email);
       update();
-      Get.offNamed(Routes.loginscreen);
+      Get.offNamed(Routes.loginScreen);
     } catch (e) {
       String message =
           e.toString().replaceAll(RegExp(validationEmail), ' ').capitalize!;
       Get.snackbar(
         "Sorry",
-        "There check this ${message}",
+        "There check this $message",
         backgroundColor: kmaincolor,
-        animationDuration: Duration(milliseconds: 400),
+        animationDuration: const Duration(milliseconds: 400),
         colorText: Colors.white,
-        duration: Duration(seconds: 2),
+        duration: const Duration(seconds: 2),
       );
     }
   }
@@ -181,7 +183,7 @@ class AuthController extends GetxController {
 
   Future signInWithFacebook() async {
     // Trigger the sign-in flow
-    final LoginResult loginResult = await FacebookAuth.instance.login();
+    // final LoginResult loginResult = await FacebookAuth.instance.login();
     var data = await FacebookAuth.instance.getUserData();
     facebookModel = FacebookModel.fromjson(data);
     print("=====================");
@@ -213,7 +215,7 @@ class AuthController extends GetxController {
       isSignIn = false;
 
       update();
-      Get.offNamed(Routes.splashscreen);
+      Get.offNamed(Routes.splashScreen);
     } catch (e) {
       print(e);
     }

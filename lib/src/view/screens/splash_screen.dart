@@ -14,6 +14,7 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Container(
           height: double.infinity,
@@ -89,11 +90,11 @@ class SplashScreen extends StatelessWidget {
                   height: 280.h,
                 ),
                 CustomElevatedButton(
-                  onpressed: () => Get.offNamed(Routes.loginscreen),
+                  onPressed: () => Get.offNamed(Routes.loginScreen),
                   text: 'Get started',
                   color: kmaincolor,
-                  fontsize: 20.sp,
-                  horizental: ScreenUtil().setWidth(45),
+                  fontSize: 20.sp,
+                  horizontal: ScreenUtil().setWidth(45),
                   vertical: ScreenUtil().setHeight(15),
                 ),
                 SizedBox(
@@ -111,7 +112,7 @@ class SplashScreen extends StatelessWidget {
                     ),
                     InkWell(
                       onTap: () {
-                        Get.offNamed(Routes.signup);
+                        Get.offNamed(Routes.signUp);
                       },
                       child: Text(
                         "Sign up",

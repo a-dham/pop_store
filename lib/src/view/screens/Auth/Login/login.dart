@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable, avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pop_store/src/logic/controller/auth_controller.dart';
@@ -45,7 +47,7 @@ class LoginScreen extends StatelessWidget {
                             "IN",
                             style: TextStyle(
                               fontSize: 35.sp,
-                              color: Color(0xff707070),
+                              color: const Color(0xff707070),
                             ),
                           ),
                         ],
@@ -59,22 +61,25 @@ class LoginScreen extends StatelessWidget {
                           validator: (value) {
                             try {
                               if (!RegExp(validationEmail).hasMatch(value!)) {
-                                bool newvalue =
+                                bool newValue =
                                     !RegExp(validationEmail).hasMatch(value);
-                                return "Your Email musn't have ${newvalue}";
+                                return "Your Email mustn't have $newValue";
                               }
                             } catch (e) {
                               return 'it should be $e';
                             }
+                            return null;
                           },
                           controller: emailcontroller,
                           oncomplete: () {},
-                          lable: 'Email',
+                          label: 'Email',
                           icon: Icon(
                             Icons.email,
                             color: kmaincolor,
                             size: 30.sp,
                           ),
+                          onChanged: (string) {},
+                          suffixion: null,
                         ),
                       ),
                       SizedBox(
@@ -86,30 +91,32 @@ class LoginScreen extends StatelessWidget {
                             if (value!.length <= 6) {
                               return 'Password must be at least 8 char';
                             }
+                            return null;
                           },
-                          suffixicon: IconButton(
+                          suffixion: IconButton(
                             onPressed: () {
                               getxController.visibilityfun();
                             },
-                            icon: getxController.visibilaty
-                                ? Icon(
+                            icon: getxController.visibility
+                                ? const Icon(
                                     Icons.visibility,
                                     color: Colors.black,
                                   )
-                                : Icon(
+                                : const Icon(
                                     Icons.visibility_off,
                                     color: Colors.black,
                                   ),
                           ),
                           controller: passwordcontroller,
                           oncomplete: () {},
-                          obscure: getxController.visibilaty ? true : false,
-                          lable: 'Password',
+                          obscure: getxController.visibility ? true : false,
+                          label: 'Password',
                           icon: Icon(
                             Icons.lock,
                             color: kmaincolor,
                             size: 30.sp,
                           ),
+                          onChanged: (string) {},
                         ),
                       ),
                       SizedBox(
@@ -120,7 +127,7 @@ class LoginScreen extends StatelessWidget {
                         child: InkWell(
                           onTap: () {
                             Get.offNamed(
-                              Routes.forgetpassword,
+                              Routes.forgetPassword,
                             );
                           },
                           child: Text(
@@ -149,9 +156,8 @@ class LoginScreen extends StatelessWidget {
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(5),
                                       side: const BorderSide()),
-                                  value:
-                                      getxController.isremember ? true : false,
-                                  onChanged: (newvalue) {
+                                  value: getxController.remember ? true : false,
+                                  onChanged: (newValue) {
                                     getxController.remeberme();
                                   },
                                   activeColor: const Color(0xff707070),
@@ -163,7 +169,7 @@ class LoginScreen extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 15.sp,
                               // fontWeight: FontWeight.w300,
-                              color: Color(0xff707070),
+                              color: const Color(0xff707070),
                             ),
                           )
                         ],
@@ -176,7 +182,7 @@ class LoginScreen extends StatelessWidget {
                           Expanded(
                             child: GetBuilder<AuthController>(
                               builder: (getxController) => CustomElevatedButton(
-                                onpressed: () {
+                                onPressed: () {
                                   try {
                                     if (logininformkey.currentState!
                                         .validate()) {
@@ -193,17 +199,18 @@ class LoginScreen extends StatelessWidget {
                                       snackPosition: SnackPosition.TOP,
                                       backgroundColor: kmaincolor,
                                       animationDuration:
-                                          Duration(milliseconds: 800),
+                                          const Duration(milliseconds: 800),
                                       colorText: Colors.white,
-                                      duration: Duration(milliseconds: 800),
+                                      duration:
+                                          const Duration(milliseconds: 800),
                                     );
                                   }
                                 },
                                 text: 'LOG IN',
                                 color: kmaincolor,
-                                horizental: 20.w,
+                                horizontal: 20.w,
                                 vertical: 12.h,
-                                fontsize: 15.sp,
+                                fontSize: 15.sp,
                               ),
                             ),
                           ),
@@ -217,7 +224,7 @@ class LoginScreen extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 16.sp,
                           // fontWeight: FontWeight.w300,
-                          color: Color(0xff707070),
+                          color: const Color(0xff707070),
                         ),
                       ),
                       SizedBox(
@@ -285,7 +292,7 @@ class LoginScreen extends StatelessWidget {
                       InkWell(
                         onTap: () {
                           Get.offNamed(
-                            Routes.signup,
+                            Routes.signUp,
                           );
                         },
                         child: Text(

@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
@@ -6,25 +8,31 @@ import 'package:pop_store/src/utils/constant.dart';
 class CustomTextField extends StatelessWidget {
   CustomTextField({
     Key? key,
-    required this.lable,
+    required this.label,
     required this.icon,
     required this.oncomplete,
-    @required this.suffixicon,
+    @required this.suffixion,
     required this.controller,
     required this.validator,
     required this.obscure,
+    @required this.onChanged,
   }) : super(key: key);
-  final String lable;
+  final String label;
   final Icon icon;
   final Callback oncomplete;
   final TextEditingController controller;
   final String? Function(String?)? validator;
   bool obscure;
-  Widget? suffixicon;
+  Widget? suffixion;
+  void Function(String)? onChanged;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      style: const TextStyle(
+        color: Colors.black,
+      ),
+      onChanged: onChanged,
       onEditingComplete: oncomplete,
       controller: controller,
       validator: validator,
@@ -34,7 +42,7 @@ class CustomTextField extends StatelessWidget {
       enableInteractiveSelection: true,
       enableSuggestions: true,
       decoration: InputDecoration(
-        suffixIcon: suffixicon,
+        suffixIcon: suffixion,
         filled: true,
         enabled: true,
         label: Row(
@@ -47,7 +55,7 @@ class CustomTextField extends StatelessWidget {
               width: 10,
             ),
             Text(
-              lable,
+              label,
               style: TextStyle(
                 fontSize: 15,
                 color: Get.isDarkMode ? Colors.pink : Colors.black,

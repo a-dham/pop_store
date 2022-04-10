@@ -2,34 +2,33 @@ import 'package:get/get.dart';
 import 'package:pop_store/src/logic/bindings/Auth_bindings.dart';
 import 'package:pop_store/src/logic/bindings/all_products_bindings.dart';
 import 'package:pop_store/src/logic/bindings/home_bindings.dart';
-import 'package:pop_store/src/logic/controller/all_products_controller.dart';
-import 'package:pop_store/src/logic/controller/auth_controller.dart';
+import 'package:pop_store/src/logic/bindings/settings_bindings.dart';
 import 'package:pop_store/src/view/screens/Auth/Login/login.dart';
 import 'package:pop_store/src/view/screens/Auth/forget%20password/forget_password.dart';
 import 'package:pop_store/src/view/screens/Auth/sign_up/sign_up.dart';
 import 'package:pop_store/src/view/screens/cart/cart_view.dart';
+import 'package:pop_store/src/view/screens/categories/categories.dart';
 import 'package:pop_store/src/view/screens/favorite/favorites.dart';
 import 'package:pop_store/src/view/screens/home/home.dart';
 import 'package:pop_store/src/view/screens/home/home_screen.dart';
-import 'package:pop_store/src/view/screens/notifacations/notifacations.dart';
-import 'package:pop_store/src/view/screens/profile/profile.dart';
+import 'package:pop_store/src/view/screens/settings/settings_view.dart';
 import 'package:pop_store/src/view/screens/splash_screen.dart';
 
 class AppRoutes {
 //initial route
-  static const splashscreen = Routes.splashscreen;
+  static const splashScreen = Routes.splashScreen;
   static const homeScreen = Routes.home;
 
   //get page list
   static List<GetPage> routes = [
-    GetPage(name: Routes.splashscreen, page: () => const SplashScreen()),
+    GetPage(name: Routes.splashScreen, page: () => const SplashScreen()),
     GetPage(
-      name: Routes.loginscreen,
+      name: Routes.loginScreen,
       page: () => LoginScreen(),
       binding: AuthBinding(),
     ),
     GetPage(
-      name: Routes.signup,
+      name: Routes.signUp,
       page: () => SignUp(),
       binding: AuthBinding(),
     ),
@@ -44,27 +43,33 @@ class AppRoutes {
       ],
     ),
     GetPage(
-      name: Routes.forgetpassword,
+      name: Routes.forgetPassword,
       page: () => ForgetPassword(),
       binding: AuthBinding(),
     ),
     GetPage(
-      name: Routes.profile,
-      page: () => Profile(),
-      binding: AuthBinding(),
+      name: Routes.settings,
+      page: () => Settings(),
+      bindings: [
+        AuthBinding(),
+        SettingsBindings(),
+      ],
     ),
     GetPage(
-      name: Routes.Notifacation,
-      page: () => Notifacations(),
-      binding: AuthBinding(),
+      name: Routes.category,
+      page: () => Categories(),
+      bindings: [
+        AuthBinding(),
+        AllProductsBindings(),
+      ],
     ),
-    GetPage(name: Routes.favourite, page: () => Favorites(), bindings: [
+    GetPage(name: Routes.favorite, page: () => Favorites(), bindings: [
       AuthBinding(),
       AllProductsBindings(),
     ]),
     GetPage(
       name: Routes.homepage,
-      page: () => HomePage(),
+      page: () => const HomePage(),
       bindings: [
         AuthBinding(),
         HomeBindings(),
@@ -83,14 +88,14 @@ class AppRoutes {
 }
 
 class Routes {
-  static const splashscreen = '/splashscreen';
-  static const loginscreen = '/loginscreen';
-  static const signup = '/signupscreen';
-  static const home = '/homescreen';
-  static const forgetpassword = '/forgetpassword';
-  static const profile = '/profile';
-  static const Notifacation = '/notifications';
-  static const favourite = '/favourite';
+  static const splashScreen = '/splashScreen';
+  static const loginScreen = '/loginScreen';
+  static const signUp = '/signUpScreen';
+  static const home = '/homeScreen';
+  static const forgetPassword = '/forgetPassword';
+  static const settings = '/settings';
+  static const category = '/category';
+  static const favorite = '/favorite';
   static const homepage = '/homepage';
   static const cartView = '/cartView';
 }

@@ -23,7 +23,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
   await Firebase.initializeApp();
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 /// The Widget that configures your application.
@@ -83,7 +83,7 @@ class MyApp extends StatelessWidget {
         // home: SplashScreen(),
         initialRoute: FirebaseAuth.instance.currentUser == null ||
                 GetStorage().read('Auth') == false
-            ? AppRoutes.splashscreen
+            ? AppRoutes.splashScreen
             : AppRoutes.homeScreen,
         getPages: AppRoutes.routes,
 

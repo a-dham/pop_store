@@ -1,17 +1,15 @@
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:pop_store/src/view/screens/categories/categories.dart';
 import 'package:pop_store/src/view/screens/favorite/favorites.dart';
 import 'package:pop_store/src/view/screens/home/home.dart';
-import 'package:pop_store/src/view/screens/home/home_screen.dart';
-import 'package:pop_store/src/view/screens/notifacations/notifacations.dart';
-import 'package:pop_store/src/view/screens/profile/profile.dart';
+import 'package:pop_store/src/view/screens/settings/settings_view.dart';
 
 class HomeController extends GetxController {
   RxInt index = 0.obs;
   List pages = [
-    HomePage(),
-    Notifacations(),
+    const HomePage(),
+    Categories(),
     Favorites(),
-    Profile(),
+    Settings(),
   ].obs;
 }

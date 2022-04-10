@@ -1,11 +1,9 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:pop_store/src/logic/bindings/home_bindings.dart';
 import 'package:pop_store/src/logic/controller/home_controller.dart';
-import 'package:pop_store/src/logic/controller/theme_mode.dart';
 import 'package:pop_store/src/utils/constant.dart';
-import 'package:pop_store/src/utils/custom_text_field.dart';
 
 class Home extends StatelessWidget {
   Home({Key? key}) : super(key: key);
@@ -52,12 +50,12 @@ class Home extends StatelessWidget {
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(
-                    Icons.notifications,
+                    Icons.category_rounded,
                     color: Get.isDarkMode ? Colors.white : Colors.black,
                   ),
                   label: '',
                   activeIcon: Icon(
-                    Icons.notifications,
+                    Icons.category_rounded,
                     color: Get.isDarkMode ? Colors.pink : kmaincolor,
                   ),
                 ),
@@ -74,12 +72,12 @@ class Home extends StatelessWidget {
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(
-                    Icons.person,
+                    Icons.settings,
                     color: Get.isDarkMode ? Colors.white : Colors.black,
                   ),
                   label: '',
                   activeIcon: Icon(
-                    Icons.person,
+                    Icons.settings,
                     color: Get.isDarkMode ? Colors.pink : kmaincolor,
                   ),
                 ),

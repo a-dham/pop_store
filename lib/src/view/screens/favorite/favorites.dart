@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pop_store/src/logic/controller/all_products_controller.dart';
@@ -20,12 +22,12 @@ class Favorites extends StatelessWidget {
               onPressed: () {
                 Get.back();
               },
-              icon: Icon(
+              icon: const Icon(
                 Icons.arrow_back_ios_new,
                 size: 15,
               ),
             ),
-            title: Text('Favorites'),
+            title: const Text('Favorites'),
             centerTitle: false,
             backgroundColor: Get.isDarkMode ? Colors.black : kmaincolor,
             actions: [
@@ -33,7 +35,7 @@ class Favorites extends StatelessWidget {
                 onPressed: () {
                   Get.offNamed(Routes.cartView);
                 },
-                icon: Icon(
+                icon: const Icon(
                   Icons.shopping_basket,
                 ),
               ),
@@ -75,7 +77,7 @@ class Favorites extends StatelessWidget {
                 child: ListView.separated(
                   itemCount: controller.favoriteList.length,
                   separatorBuilder: (BuildContext context, int index) {
-                    return Divider(
+                    return const Divider(
                       thickness: 2,
                       color: Colors.grey,
                     );
@@ -153,7 +155,7 @@ class Favorites extends StatelessWidget {
             onPressed: () {
               controller.favorites(productId);
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.favorite,
               color: Colors.red,
               size: 40,
